@@ -85,7 +85,6 @@ html, body {
     background: #FFFFFF;
 }
 
-
 /*----- Theme -----*/
 
 body {
@@ -190,6 +189,9 @@ ul li a.fa-github:hover {
 }
 
 @media only screen and (max-width: 767px) {
+    *, *:after, *:before {
+        transition: none;
+    }
     body {
         font-size: 10px
     }
