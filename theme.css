@@ -1,0 +1,202 @@
+/*----- 1. Reset.css -----*/
+
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*----- Helper Classes -----*/
+
+html * {
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+    margin:0;
+    padding:0;
+    height:100%;
+}
+
+
+*, *:after, *:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    transition: all .25s;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+::-moz-selection {
+    color: #429ef4;
+    background: #FFFFFF;
+}
+
+::selection {
+    color: #429ef4;
+    background: #FFFFFF;
+}
+
+
+/*----- Theme -----*/
+
+body {
+    font: 14px 'Poppins';
+    background-color: #fff;
+    color: #333;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+article {
+    width: 60%;
+}
+
+img {
+    width: 15%;
+    border-radius: 50%;
+    margin-right: 2em;
+}
+
+h1, h2 {
+    display: block;
+    font-size: 42px;
+	font-weight: 700;
+    color: #111;
+    line-height: 1.2;
+    margin: 0;
+    letter-spacing: -1px;
+    margin-top: .81em;
+}
+
+h1 em {
+    color: #429ef4;
+}
+
+h2 {
+    color: #333;
+    margin-top: .5em;
+}
+
+P {
+    padding: 0 10em;
+    margin-top: 1.62em;
+}
+
+ul {
+    margin-top: .81em;
+    font-size: 34px;
+    transition-property: transform;
+}
+
+ul li {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+ul li:first {
+    margin: 0;
+}
+
+ul li a {
+    text-decoration: none;
+}
+
+ul li a, ul li a:visited, ul li a:active {
+    color: #000;
+}
+
+ul li a:hover {
+    transition-duration: .1s;
+    transform: scale(1.2);
+}
+
+ul li a.fa-linkedin-in:hover  {
+    color: #0077b5;
+}
+
+ul li a.fa-twitter:hover {
+    color: #38A1F3;
+}
+
+ul li a.fa-github:hover {
+    color: #666;
+}
+
+@media only screen and (max-width: 1024px) {
+    body {
+        font-size: 12px
+    }
+    h1, h2 {
+        font-size: 34px;
+    }
+    article {
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    body {
+        font-size: 10px
+    }
+    h1, h2 {
+        font-size: 28px;
+    }
+    article {
+        width: 80%;
+    }
+}
