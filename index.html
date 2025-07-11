@@ -8,8 +8,131 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">
-  <link rel="stylesheet" href="styles.css" type="text/css">
-  <script src="tagline.js" type="text/javascript"></script>
+  <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-rendering: optimizeLegibility !important;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        transition: all .25s;
+    }
+
+    body {
+        font-family: "Poppins", Arial, serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 16px;
+        font-optical-sizing: auto;
+        color: #000;
+        line-height: 1.6;
+        background: #f4f4f4;
+    }
+
+    nav {
+        flex-grow: 9;
+        font-size: 1rem;
+    }
+
+    nav li, nav a {
+        display: inline-flex;
+    }
+
+    nav svg {
+        padding: .2em;
+        width: 1.5em;
+        display: block;
+    }
+
+    nav svg:hover path {
+        opacity: .41;
+    }
+
+    header {
+        width: 90%;
+        margin: 0 auto;
+        padding: 5rem 0;
+        justify-content: space-between;
+        align-items: top;
+    }
+
+    header > div {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    header .logo {
+        flex-grow: 1;
+    }
+
+    header .logo svg {
+        width: 4rem;
+    }
+
+    header nav {
+        text-align: right;
+    }
+
+    h1 {
+        font-size: 48px;
+        font-weight: 700;
+        letter-spacing: -.05em;
+        margin-top: 5rem;
+        padding: .5rem 0;
+    }
+
+    h1 em {
+        font-size: 12px;
+        font-weight: 300;
+        letter-spacing: 0;
+        font-style: normal;
+    }
+
+    h2 {
+        font-size: 28px;
+        font-weight: 500;
+        line-height: 1.2em;
+        padding-bottom: 1rem;
+        color: #909090
+    }
+
+    h2 em {
+        font-style: normal;
+        color: #000;
+    }
+
+    section {
+        width: 90%;
+        margin: 0 auto;
+        padding: 0;
+        column-count: 2;
+        column-gap: 3rem;
+    }
+
+    section p {
+        padding-bottom: 1.5rem;
+        font-weight: 300;
+    }
+
+    footer {
+        width: 90%;
+        margin: 0 auto;
+        padding: 3.5rem 0 1rem 0;
+    }
+
+    @media (min-width: 1024px) {
+        header, section, footer {
+            width: 1024px
+        }
+    }
+
+    @media (max-width: 800px) {
+        section {
+            column-count: 1;
+        }
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -24,7 +147,7 @@
       <nav>
         <ul>
           <li>
-            <a rel="author" href="https://www.linkedin.com/in/zepedro" target="_blank">
+            <a rel="author" href="https://www.linkedin.com/in/zepedro" target="_blank" title="LinkedIn">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                 <title>LinkedIn</title>
                 <path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/>
@@ -78,7 +201,7 @@
       </nav>
     </div>
     <h1>Jos&eacute; Silva <em>(aka Z&eacute; Pedro)</em></h1>
-    <h2><em id="tagline">Software architect, technical lead, passionate developer, compulsive tester, usability geek, tinkerer, wannabe barista.</em> Born in Portugal, living in Ireland, citizen of the world.</h2>
+    <h2><em id="tagline" aria-live="polite">Software architect, technical lead, passionate developer, compulsive tester, usability geek, tinkerer, wannabe barista.</em> Born in Portugal, living in Ireland, citizen of the world.</h2>
   </header>
   <section>
     <p>My path from software developer to architect has been paved with countless "aha!" moments: discovering the joy of automating away tedious tasks, experiencing the thrill of seeing a distributed system scale flawlessly under load, and feeling the satisfaction of watching team members grow into technical leaders. Each role has added a new dimension to my understanding, teaching me that the best architectures emerge when we blend technical excellence with human insight.</p>
@@ -91,7 +214,7 @@
     <nav>
       <ul>
         <li>
-          <a rel="author" href="https://www.linkedin.com/in/zepedro" target="_blank">
+          <a rel="author" href="https://www.linkedin.com/in/zepedro" target="_blank" title="LinkedIn">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
               <title>LinkedIn</title>
               <path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/>
@@ -144,5 +267,37 @@
       </ul>
     </nav>
   </footer>
+  <script type="text/javascript">
+    const taglines = [
+        "Software architect, technical lead, passionate developer, compulsive tester, usability geek, tinkerer, wannabe barista.",
+        "Code whisperer, team navigator, obsessive optimizer, bug hunter, interface dreamer, hobbyist inventor, coffee enthusiast.",
+        "Digital craftsman, agile captain, code poet, bug banisher, design perfectionist, perpetual tinkerer, caffeine devotee.",
+        "System designer, solution weaver, relentless debugger, UX admirer, gadget tinkerer, and part-time coffee chemist.",
+        "Architect of code, builder of teams, refactor addict, test addict, interface fan, hobbyist inventor, coffee enthusiast.",
+        "Creative coder, collaborative captain, problem solver, bug eliminator, UI wizard, side-project aficionado, coffee philosopher.",
+        "Technical storyteller, development guide, error eradicator, pixel pusher, gadget fiddler, coffee brewmaster in training.",
+        "Software sculptor, agile navigator, bug slayer, UX enthusiast, tinkering hobbyist, coffee lab experimenter.",
+        "Code architect, team motivator, detail obsessive, usability nerd, lifelong learner, coffee aficionado.",
+        "Framework builder, sprint leader, problem whisperer, edge-case detective, design advocate, gadget explorer, espresso devotee.",
+        "Digital dreamer, scrum master, testing fanatic, UX explorer, maker of gizmos, wannabe expresso artist.",
+        "Code crafter, innovation driver, QA loyalist, interface nerd, tool hacker, roaster apprentice.",
+        "System strategist, debugging detective, refactor wizard, UX hobbyist, weekend tinkerer, espresso adventurer.",
+        "Software designer, code philosopher, bug crusher, user advocate, gizmo lover, amateur barista.",
+        "Technical storyteller, error hunter, modular magician, interaction dreamer, idea tinkerer, coffee perfectionist.",
+        "Solution strategist, pattern enthusiast, code troubleshooter, usability seeker, gizmo tweaker, coffee daydreamer.",
+        "Development guru, code caretaker, quality champion, UI admirer, innovation seeker, espresso scholar.",
+        "Software builder, agile shepherd, test enthusiast, bug eliminator, pixel enthusiast, coffee aficionado-in-training.",
+        "System crafter, task master, relentless debugger, user-centered thinker, weekend DIYer, espresso apprentice.",
+        "Creative coder, innovation guide, bug buster, design fanatic, gadget builder, cafeine driven dreamer.",
+        "Tech visionary, development coach, detail hunter, usability fan, playful inventor, coffee lab tinkerer."
+    ];
+    document.addEventListener("DOMContentLoaded", function() {
+        const el = document.getElementById("tagline");
+        if (el) {
+            const idx = Math.floor(Math.random() * taglines.length);
+            el.textContent = taglines[idx];
+        }
+    });
+  </script>
 </body>
 </html>
