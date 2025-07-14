@@ -52,7 +52,7 @@
     header {
         width: 90%;
         margin: 0 auto;
-        padding: 5rem 0;
+        padding: 5rem 0 3rem ;
         justify-content: space-between;
         align-items: top;
     }
@@ -106,13 +106,48 @@
         width: 90%;
         margin: 0 auto;
         padding: 0;
+    }
+
+    section div {
         column-count: 2;
         column-gap: 3rem;
+    }
+
+    section h2 {
+      padding-top: 3rem;
+      color: #000;
     }
 
     section p {
         padding-bottom: 1.5rem;
         font-weight: 300;
+    }
+
+    section ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    section ul li span {
+        color: #909090;
+        font-size: 0.75em;
+        display: inline-block;
+        width: 6.5em;
+        text-align: right;
+        margin-right: 1em
+    }
+
+    section ul li a {
+        font-size: 0.9em;
+        color: #000;
+        text-decoration: none;
+    }
+
+    section ul li a:hover {
+        color: #0066cc;
+        text-decoration: underline;
+        text-decoration-style: dotted;
+        text-decoration-color: #0066cc;
     }
 
     footer {
@@ -128,8 +163,24 @@
     }
 
     @media (max-width: 800px) {
-        section {
+        section div {
             column-count: 1;
+        }
+        
+        section ul li {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+        }
+        
+        section ul li span {
+            flex-shrink: 0;
+            margin-right: 1em;
+        }
+        
+        section ul li a {
+            flex: 1;
+            min-width: 0;
         }
     }
   </style>
@@ -204,11 +255,28 @@
     <h2><em id="tagline" aria-live="polite">Software architect, technical lead, passionate developer, compulsive tester, usability geek, tinkerer, wannabe barista.</em> Born in Portugal, living in Ireland, citizen of the world.</h2>
   </header>
   <section>
-    <p>My path from software developer to architect has been paved with countless "aha!" moments: discovering the joy of automating away tedious tasks, experiencing the thrill of seeing a distributed system scale flawlessly under load, and feeling the satisfaction of watching team members grow into technical leaders. Each role has added a new dimension to my understanding, teaching me that the best architectures emerge when we blend technical excellence with human insight.</p>
-    <p>These days, I'm in my element crafting technology visions that marry cloud-native architectures with exceptional developer experiences. I'm driven by the challenge of building systems that are not just technically sophisticated, but also a joy to work with. Nothing excites me more than seeing development teams thrive with well-designed platforms and tools that make their daily work more efficient and enjoyable.</p>
-    <p>At heart, I'm still that curious developer who gets excited about elegant solutions to complex problems. But now, with years of battle-tested experience, I channel that enthusiasm into creating resilient, scalable distributed systems that stand the test of time. I believe passionately that the best software emerges from the perfect blend of technical expertise and human understanding – and I bring that belief to every architectural challenge I tackle.</p>
-    <p>When I'm not sketching out system architectures or mentoring the next generation of technical leaders, you'll find me exploring the latest in cloud technologies and pursuing my endless quest for engineering excellence.</p>
-    <p>After all, in the rapidly evolving world of technology, staying curious and passionate isn't just an option – it's a necessity.</p>
+    <div>
+      <p>My path from software developer to architect has been paved with countless "aha!" moments: discovering the joy of automating away tedious tasks, experiencing the thrill of seeing a distributed system scale flawlessly under load, and feeling the satisfaction of watching team members grow into technical leaders. Each role has added a new dimension to my understanding, teaching me that the best architectures emerge when we blend technical excellence with human insight.</p>
+      <p>These days, I'm in my element crafting technology visions that marry cloud-native architectures with exceptional developer experiences. I'm driven by the challenge of building systems that are not just technically sophisticated, but also a joy to work with. Nothing excites me more than seeing development teams thrive with well-designed platforms and tools that make their daily work more efficient and enjoyable.</p>
+      <p>At heart, I'm still that curious developer who gets excited about elegant solutions to complex problems. But now, with years of battle-tested experience, I channel that enthusiasm into creating resilient, scalable distributed systems that stand the test of time. I believe passionately that the best software emerges from the perfect blend of technical expertise and human understanding – and I bring that belief to every architectural challenge I tackle.</p>
+      <p>When I'm not sketching out system architectures or mentoring the next generation of technical leaders, you'll find me exploring the latest in cloud technologies and pursuing my endless quest for engineering excellence.</p>
+      <p>After all, in the rapidly evolving world of technology, staying curious and passionate isn't just an option – it's a necessity.</p>
+    </div>
+  </section>
+  <section>
+    <h2>Latest blog posts</h2>
+    <!-- BLOG_POSTS_PLACEHOLDER - Do not remove this comment -->
+    <ul>
+      <li><span>2025-07-11</span> <a href="https://medium.com/@zepedrosilva/the-great-saas-obituary-why-reports-of-its-death-are-greatly-exaggerated-82a8910579c6?source=rss-cc0cb0ca1820------2" target="_blank">The great SaaS obituary: why reports of its death are greatly exaggerated</a></li>
+      <li><span>2025-07-06</span> <a href="https://medium.com/@zepedrosilva/the-curious-case-of-the-vanishing-and-reappearing-instruction-manual-6930a4cd5090?source=rss-cc0cb0ca1820------2" target="_blank">The curious case of the vanishing (and reappearing) instruction manual</a></li>
+      <li><span>2025-06-23</span> <a href="https://medium.com/@zepedrosilva/the-amplification-paradox-why-ai-makes-good-architecture-more-essential-not-less-5e05bd2d6669?source=rss-cc0cb0ca1820------2" target="_blank">The amplification paradox: Why AI makes good architecture more essential, not less</a></li>
+      <li><span>2025-05-11</span> <a href="https://medium.com/@zepedrosilva/the-unexpected-joy-of-digital-parenthood-a-fictional-developers-tale-of-code-ownership-93de11d81b85?source=rss-cc0cb0ca1820------2" target="_blank">The unexpected joy of digital parenthood: a fictional developer’s tale of code ownership</a></li>
+      <li><span>2025-04-19</span> <a href="https://medium.com/@zepedrosilva/from-chaos-to-microservices-and-a-dinner-party-gone-mad-2a6d6803e095?source=rss-cc0cb0ca1820------2" target="_blank">From chaos to microservices (and a dinner party gone mad)</a></li>
+      <li><span>2025-02-05</span> <a href="https://developers.mews.com/why-tracking-technical-debt-matters-for-growth/" target="_blank">Why tracking technical debt matters for growth</a></li>
+      <li><span>2025-01-13</span> <a href="https://developers.mews.com/leveraging-adrs-to-strengthen-architecture-and-teams/" target="_blank">Leveraging ADRs to strengthen architecture and teams</a></li>
+      <li><span>2024-11-29</span> <a href="https://developers.mews.com/architecture-overview/" target="_blank">Architecture Overview: A guide to the autobiography of a system</a></li>
+      <li><span>2024-11-01</span> <a href="https://developers.mews.com/the-importance-of-lean-documentation/" target="_blank">The importance of lean documentation: A developer’s key to empowering organizations</a></li>
+    </ul>
   </section>
   <footer>
     <nav>
