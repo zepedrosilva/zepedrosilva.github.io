@@ -27,6 +27,14 @@ def convert_to_canonical_url(original_url, canonical_base_url):
     # extract just the path without query parameters
     clean_path = original_parsed.path
     
+    # handle Medium URLs - remove the @username part
+    if 'medium.com' in original_parsed.netloc and '/@' in clean_path:
+        # extract everything after the username
+        # e.g., /@zepedrosilva/article-title -> /article-title
+        parts = clean_path.split('/', 3)  # ['', '@zepedrosilva', 'article-title', ...]
+        if len(parts) >= 3:
+            clean_path = '/' + parts[2] if len(parts) == 3 else '/' + '/'.join(parts[2:])
+    
     # construct the canonical URL
     return f"{canonical_domain}{clean_path}"
 
