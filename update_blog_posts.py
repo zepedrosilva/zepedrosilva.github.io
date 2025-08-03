@@ -15,8 +15,8 @@ def get_base_url(url):
     parsed = urlparse(url)
     return f"{parsed.scheme}://{parsed.netloc}"
 
-def convert_to_canonical_url(original_url, canonical_base_url):
-    """convert URL to use canonical domain and remove query parameters"""
+def convert_to_canonical_url(original_url, canonical_base_url, regex_pattern=None):
+    """convert URL to use canonical domain and apply optional regex transformation"""
     # parse the canonical base URL to get the domain
     canonical_parsed = urlparse(canonical_base_url)
     canonical_domain = f"{canonical_parsed.scheme}://{canonical_parsed.netloc}"
@@ -27,36 +27,49 @@ def convert_to_canonical_url(original_url, canonical_base_url):
     # extract just the path without query parameters
     clean_path = original_parsed.path
     
-    # handle Medium URLs - remove the @username part
-    if 'medium.com' in original_parsed.netloc and '/@' in clean_path:
-        # extract everything after the username
-        # e.g., /@zepedrosilva/article-title -> /article-title
-        parts = clean_path.split('/', 3)  # ['', '@zepedrosilva', 'article-title', ...]
-        if len(parts) >= 3:
-            clean_path = '/' + parts[2] if len(parts) == 3 else '/' + '/'.join(parts[2:])
+    # apply regex pattern if provided
+    if regex_pattern:
+        try:
+            # assume the regex pattern is in the format "search_pattern->replacement"
+            if '->' in regex_pattern:
+                search_pattern, replacement = regex_pattern.split('->', 1)
+                clean_path = re.sub(search_pattern.strip(), replacement.strip(), clean_path)
+            else:
+                # if no replacement specified, assume we want to extract the first capture group
+                match = re.search(regex_pattern, clean_path)
+                if match and match.groups():
+                    clean_path = '/' + match.group(1)
+        except re.error:
+            # if regex fails, use original path
+            pass
     
     # construct the canonical URL
     return f"{canonical_domain}{clean_path}"
 
 def parse_feed_entry(feed_entry):
-    """parse a feed entry in format 'name|url' or just 'url'"""
-    if '|' in feed_entry:
-        # format: "name|url"  
-        parts = feed_entry.split('|', 1)
-        if len(parts) == 2:
-            name = parts[0].strip()
-            url = parts[1].strip()
-            return name, url
+    """parse a feed entry in format 'name|url|regex_pattern' or 'name|url' or just 'url'"""
+    parts = feed_entry.split('|')
     
-    # format: just "url" - use domain as name
-    url = feed_entry.strip()
-    parsed = urlparse(url)
-    # use the domain as the name
-    name = parsed.netloc.replace('www.', '')
-    
-    return name, url
+    if len(parts) >= 3:
+        # format: "name|url|regex_pattern"
+        name = parts[0].strip()
+        url = parts[1].strip()
+        regex_pattern = parts[2].strip() if parts[2].strip() else None
+        return name, url, regex_pattern
+    elif len(parts) == 2:
+        # format: "name|url"
+        name = parts[0].strip()
+        url = parts[1].strip()
+        return name, url, None
+    else:
+        # format: just "url" - use domain as name
+        url = feed_entry.strip()
+        parsed = urlparse(url)
+        # use the domain as the name
+        name = parsed.netloc.replace('www.', '')
+        return name, url, None
 
-def fetch_posts_from_feed(feed_url, source_name, base_url):
+def fetch_posts_from_feed(feed_url, source_name, base_url, regex_pattern=None):
     """fetch and parse RSS feed"""
     feed = feedparser.parse(feed_url)
     posts = []
@@ -79,8 +92,8 @@ def fetch_posts_from_feed(feed_url, source_name, base_url):
                     except ValueError:
                         published_date = 'Unknown'
         
-        # convert link to canonical URL using the feed's base URL
-        canonical_link = convert_to_canonical_url(entry.link, base_url)
+        # convert link to canonical URL using the feed's base URL and regex pattern
+        canonical_link = convert_to_canonical_url(entry.link, base_url, regex_pattern)
         
         post = {
             'title': entry.title,
@@ -161,9 +174,9 @@ def update_html(posts):
         return False
 
 def main():
-    # hardcoded feed URLs
+    # hardcoded feed URLs with optional regex patterns
     feed_entries = [
-        "Medium|https://blog.zepedro.com/feed",
+        "Medium|https://blog.zepedro.com/feed|/@[^/]+/(.+)",
         "Developers@Mews|https://developers.mews.com/author/jose-silva/feed/"
     ]
     
@@ -176,9 +189,9 @@ def main():
         # parse feed entries and fetch posts from all feeds
         feeds_posts = []
         for feed_entry in feed_entries:
-            source_name, feed_url = parse_feed_entry(feed_entry)
+            source_name, feed_url, regex_pattern = parse_feed_entry(feed_entry)
             base_url = get_base_url(feed_url)
-            posts = fetch_posts_from_feed(feed_url, source_name, base_url)
+            posts = fetch_posts_from_feed(feed_url, source_name, base_url, regex_pattern)
             feeds_posts.append(posts)
             print(f"Fetched {len(posts)} posts from {source_name}")
         
