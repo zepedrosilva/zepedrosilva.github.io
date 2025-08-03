@@ -15,6 +15,21 @@ def get_base_url(url):
     parsed = urlparse(url)
     return f"{parsed.scheme}://{parsed.netloc}"
 
+def convert_to_canonical_url(original_url, canonical_base_url):
+    """convert URL to use canonical domain and remove query parameters"""
+    # parse the canonical base URL to get the domain
+    canonical_parsed = urlparse(canonical_base_url)
+    canonical_domain = f"{canonical_parsed.scheme}://{canonical_parsed.netloc}"
+    
+    # parse the original URL
+    original_parsed = urlparse(original_url)
+    
+    # extract just the path without query parameters
+    clean_path = original_parsed.path
+    
+    # construct the canonical URL
+    return f"{canonical_domain}{clean_path}"
+
 def parse_feed_entry(feed_entry):
     """parse a feed entry in format 'name|url' or just 'url'"""
     if '|' in feed_entry:
@@ -56,9 +71,12 @@ def fetch_posts_from_feed(feed_url, source_name, base_url):
                     except ValueError:
                         published_date = 'Unknown'
         
+        # convert link to canonical URL using the feed's base URL
+        canonical_link = convert_to_canonical_url(entry.link, base_url)
+        
         post = {
             'title': entry.title,
-            'link': entry.link,
+            'link': canonical_link,
             'published': published_date or 'Unknown',
             'source': source_name,
             'source_url': base_url,
@@ -137,7 +155,7 @@ def update_html(posts):
 def main():
     # hardcoded feed URLs
     feed_entries = [
-        "Medium|https://medium.com/@zepedrosilva/feed",
+        "Medium|https://blog.zepedro.com/feed",
         "Developers@Mews|https://developers.mews.com/author/jose-silva/feed/"
     ]
     
