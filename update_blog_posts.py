@@ -107,27 +107,15 @@ def fetch_posts_from_feed(feed_url, source_name, base_url, regex_pattern=None):
     
     return posts
 
-def merge_and_deduplicate_posts(feeds_posts, max_posts=10):
-    """merge posts from multiple feeds, remove duplicates based on order precedence"""
-    all_posts = []
-    seen_titles = set()
-    
-    # process feeds in order (first feed takes precedence)
-    for feed_posts in feeds_posts:
-        for post in feed_posts:
-            if post['normalized_title'] not in seen_titles:
-                all_posts.append(post)
-                seen_titles.add(post['normalized_title'])
-    
-    # sort by published date (most recent first), handle 'Unknown' dates
+def sort_posts_by_date(posts):
+    """sort posts by published date (most recent first)"""
     def sort_key(post):
         if post['published'] == 'Unknown':
             return '1900-01-01'  # put unknown dates at the end
         return post['published']
     
-    all_posts.sort(key=sort_key, reverse=True)
-    
-    return all_posts[:max_posts]
+    posts.sort(key=sort_key, reverse=True)
+    return posts
 
 def generate_blog_section(posts):
     """generate HTML section for blog posts"""
@@ -174,44 +162,29 @@ def update_html(posts):
         return False
 
 def main():
-    # hardcoded feed URLs with optional regex patterns
-    feed_entries = [
-        "Medium|https://blog.zepedro.com/feed|/@[^/]+/(.+)",
-        "Developers@Mews|https://developers.mews.com/author/jose-silva/feed/"
-    ]
+    # Medium feed URL with regex pattern
+    feed_url = "https://blog.zepedro.com/feed"
+    source_name = "Medium"
+    regex_pattern = "/@[^/]+/(.+)"
     
-    # hardcoded max_posts
-    max_posts = 25
-    
-    print(f"Fetching up to {max_posts} blog posts from {len(feed_entries)} feeds")
+    print("Fetching blog posts from Medium")
     
     try:
-        # parse feed entries and fetch posts from all feeds
-        feeds_posts = []
-        for feed_entry in feed_entries:
-            source_name, feed_url, regex_pattern = parse_feed_entry(feed_entry)
-            base_url = get_base_url(feed_url)
-            posts = fetch_posts_from_feed(feed_url, source_name, base_url, regex_pattern)
-            feeds_posts.append(posts)
-            print(f"Fetched {len(posts)} posts from {source_name}")
+        base_url = get_base_url(feed_url)
+        posts = fetch_posts_from_feed(feed_url, source_name, base_url, regex_pattern)
+        print(f"Fetched {len(posts)} posts from {source_name}")
         
-        # merge and deduplicate
-        all_posts = merge_and_deduplicate_posts(feeds_posts, max_posts)
+        # sort posts by date
+        sorted_posts = sort_posts_by_date(posts)
         
-        if all_posts:
-            updated = update_html(all_posts)
+        if sorted_posts:
+            updated = update_html(sorted_posts)
             if updated:
-                print(f"Updated index.html with {len(all_posts)} blog posts")
-                # show breakdown by source
-                source_counts = {}
-                for post in all_posts:
-                    source_counts[post['source']] = source_counts.get(post['source'], 0) + 1
-                for source, count in source_counts.items():
-                    print(f"{source} posts: {count}")
+                print(f"Updated index.html with {len(sorted_posts)} blog posts")
             else:
                 print("index.html is already up to date")
         else:
-            print("No posts found in the feeds")
+            print("No posts found in the feed")
     except Exception as e:
         print(f"Error updating blog posts: {e}")
         exit(1)
