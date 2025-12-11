@@ -174,15 +174,16 @@ def update_html(posts):
         return False
 
 def main():
-    # Medium feed URL with regex pattern
-    feed_url = "https://blog.zepedro.com/feed"
+    # Use direct Medium feed URL to avoid redirect issues
+    feed_url = "https://medium.com/@zepedrosilva/feed"
     source_name = "Medium"
+    # Use blog.zepedro.com as the canonical base URL for output links
+    base_url = "https://blog.zepedro.com"
     regex_pattern = "/@[^/]+/(.+)"
-    
+
     print("Fetching blog posts from Medium")
-    
+
     try:
-        base_url = get_base_url(feed_url)
         posts = fetch_posts_from_feed(feed_url, source_name, base_url, regex_pattern)
         print(f"Fetched {len(posts)} posts from {source_name}")
         
