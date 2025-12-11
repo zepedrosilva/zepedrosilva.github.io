@@ -6,6 +6,9 @@ import sys
 from datetime import datetime
 from urllib.parse import urlparse
 
+# Set user agent to avoid Medium blocking - must be set before parsing
+feedparser.USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+
 def normalize_title(title):
     """normalize title for duplicate detection"""
     return re.sub(r'[^\w\s]', '', title.lower()).strip()
@@ -80,9 +83,6 @@ def parse_feed_entry(feed_entry):
 
 def fetch_posts_from_feed(feed_url, source_name, base_url, regex_pattern=None):
     """fetch and parse RSS feed"""
-    # Set user agent to avoid Medium blocking
-    feedparser.USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-
     feed = feedparser.parse(feed_url)
     posts = []
     
