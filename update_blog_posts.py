@@ -20,14 +20,23 @@ def convert_to_canonical_url(original_url, canonical_base_url, regex_pattern=Non
     # parse the canonical base URL to get the domain
     canonical_parsed = urlparse(canonical_base_url)
     canonical_domain = f"{canonical_parsed.scheme}://{canonical_parsed.netloc}"
-    
+
     # parse the original URL
     original_parsed = urlparse(original_url)
-    
+
     # extract just the path without query parameters
     clean_path = original_parsed.path
-    
-    # apply regex pattern if provided
+
+    # For Medium URLs, extract the article ID (12-character hex string at the end)
+    # Format: https://medium.com/@username/title-slug-ARTICLE_ID?source=...
+    # We want to extract just the ARTICLE_ID and create: https://blog.zepedro.com/ARTICLE_ID
+    medium_article_pattern = r'-([a-f0-9]{12})(?:\?|$)'
+    match = re.search(medium_article_pattern, original_url)
+    if match:
+        article_id = match.group(1)
+        return f"{canonical_domain}/{article_id}"
+
+    # apply regex pattern if provided (fallback for other formats)
     if regex_pattern:
         try:
             # assume the regex pattern is in the format "search_pattern->replacement"
@@ -42,7 +51,7 @@ def convert_to_canonical_url(original_url, canonical_base_url, regex_pattern=Non
         except re.error:
             # if regex fails, use original path
             pass
-    
+
     # construct the canonical URL
     return f"{canonical_domain}{clean_path}"
 
@@ -71,6 +80,9 @@ def parse_feed_entry(feed_entry):
 
 def fetch_posts_from_feed(feed_url, source_name, base_url, regex_pattern=None):
     """fetch and parse RSS feed"""
+    # Set user agent to avoid Medium blocking
+    feedparser.USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+
     feed = feedparser.parse(feed_url)
     posts = []
     
