@@ -35,6 +35,10 @@
       --lh-display: 0.98;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     html,
     body {
       margin: 0;
@@ -161,7 +165,6 @@
       font-weight: 400;
       color: var(--mute-2);
       letter-spacing: 0;
-      text-transform: lowercase;
       vertical-align: 1.5em;
       margin-left: 0.4em;
     }
@@ -835,11 +838,15 @@
         }, 34);
       }
 
+      var taglineEl = pill.closest('p') || pill.parentElement;
+
       function cycle() {
+        taglineEl.style.minHeight = taglineEl.offsetHeight + 'px';
         deleteAll(function () {
           idx = (idx + 1) % words.length;
           var parts = splitTagline(words[idx]);
           typeAll(parts.pill, parts.rest, function () {
+            taglineEl.style.minHeight = '';
             setTimeout(cycle, 20000);
           });
         });
