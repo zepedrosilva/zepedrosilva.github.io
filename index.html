@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>José Silva (aka Zé Pedro)</title>
+  <title>José Silva (Zé Pedro) — Architect &amp; Writer</title>
+  <meta name="description" content="José Silva (Zé Pedro) — Architect, writer, and systems thinker. Chief Architect at Mews, based in Dublin.">
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -378,7 +379,109 @@
       color: var(--accent);
     }
 
+    /* Curated Themes */
+    .themes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-left: calc(15% + var(--gap));
+      margin-bottom: 48px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--line);
+    }
 
+    .theme-col {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .theme-header {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .theme-eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--fs-eyebrow);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--mute-2);
+    }
+
+    .theme-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      margin: 0;
+      color: var(--ink);
+    }
+
+    .theme-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .theme-links li a {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      color: inherit;
+    }
+
+    .theme-link-title {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.35;
+      letter-spacing: -0.015em;
+      transition: color 0.2s;
+    }
+
+    .theme-links li a:hover .theme-link-title {
+      color: var(--accent);
+    }
+
+    .theme-link-meta {
+      font-size: 12px;
+      color: var(--mute-2);
+      line-height: var(--lh-body);
+    }
+
+    .recent-heading {
+      margin-left: calc(15% + var(--gap));
+      margin-bottom: 16px;
+    }
+
+    .archive-cta {
+      display: flex;
+      justify-content: flex-end;
+      padding-top: 24px;
+      margin-left: calc(15% + var(--gap));
+    }
+
+    .archive-cta a {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mute-2);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+
+    .archive-cta a:hover {
+      color: var(--accent);
+    }
 
     /* Footer */
     .footer {
@@ -538,8 +641,16 @@
         gap: 12px;
       }
 
-      .links {
+      .links,
+      .themes-grid,
+      .recent-heading,
+      .archive-cta {
         margin-left: 0;
+      }
+
+      .themes-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
       }
     }
 
@@ -589,8 +700,8 @@
         José Silva<span class="caret" aria-hidden="true"></span><span class="aka">aka Zé Pedro</span>
       </h1>
       <p class="tagline">
-        <span class="primary rotating" id="tagline">Architect of code</span><span class="primary" id="tagline-rest">,
-          builder of teams, refactor addict, test addict, interface fan, hobbyist inventor, coffee enthusiast.</span>
+        <span class="primary rotating" id="tagline">Architect of systems</span><span class="primary" id="tagline-rest">,
+          collector of metaphors, Chief Architect at Mews.</span>
         <span class="muted">Born in Portugal, living in Ireland, citizen of the world.</span>
       </p>
     </section>
@@ -598,31 +709,108 @@
     <section class="section about" id="about">
       <span class="eyebrow">About</span>
       <div class="col">
-        <p>My path from software developer to architect has been paved with countless "aha!" moments, each one a story
-          worth telling. From discovering the joy of automating away tedious tasks to experiencing the thrill of seeing
-          a distributed system scale flawlessly under load, I've learned that the most valuable insights often come from
-          reflecting on these experiences and sharing them with others.</p>
-        <p>These days, I help craft technology visions that marry cloud-native architectures with exceptional developer
-          experiences, but I'm equally passionate about documenting the learning journey that got me here. Through my
-          writing, I explore the human stories behind technical decisions, the practical analogies that make complex
-          systems understandable, and the pivotal moments that shape how we build and evolve technology.</p>
+        <p>By day, I work as Chief Architect at Mews, spending my time in that messy, fascinating intersection where large distributed platforms meet human organizations. I'm that person who still gets a genuine kick out of an elegant refactor, an architecture diagram that makes someone go "aha!", or watching a platform turn tangled legacy friction into something teams actually enjoy deploying on a Friday afternoon.</p>
+        <p>I believe the hardest problems in software are almost never just about bits and bytes. They are fundamentally socio-technical: how software architectures inevitably mirror team structures, why platform friction hides in plain sight from the people who built it, and how to design systems that evolve gracefully rather than rot under their own weight.</p>
       </div>
       <div class="col">
-        <p>What excites me most isn't just solving architectural challenges. It's about unpacking the "why" behind our
-          decisions and sharing those insights with fellow developers and architects. I believe the best learning
-          happens when we examine not just what we built, but how we thought through the problems, what we discovered
-          along the way, and how those experiences shaped our approach to future challenges.</p>
-        <p>At heart, I'm still that curious developer who gets excited about elegant solutions. Whether I'm sketching
-          out system architectures, mentoring emerging technical leaders, or crafting stories about the human side of
-          technology, I'm driven by the belief that sharing our learning journeys makes us all better builders.</p>
+        <p>Lately, I spend a lot of time thinking about what the AI inflection actually means for engineering craft. When autonomous agents can produce code faster than humans can review it, where does engineering discernment live? How do we build guardrails that keep systems resilient without turning development into a checklist bureaucracy?</p>
+        <p>Most of my curiosities end up as essays on <a href="https://blog.zepedro.com" target="_blank" rel="noopener" style="text-decoration: underline; text-underline-offset: 3px;">blog.zepedro.com</a>—usually written through metaphors, exploring everything from police sketch artists and cartographers to gym memberships and political capital. When I'm not sketching systems or writing, you'll find me tinkering, drinking far too much coffee, and enjoying life in Dublin.</p>
       </div>
     </section>
 
     <section class="section" id="writing">
       <div class="section-head">
-        <span class="label">Latest writing</span>
+        <span class="label">Essays &amp; Publication</span>
         <h2>Notes from the climb: essays on systems, teams, and the human side of building.</h2>
       </div>
+
+      <div class="themes-grid">
+        <div class="theme-col">
+          <div class="theme-header">
+            <span class="theme-eyebrow">Track 01</span>
+            <h3 class="theme-title">AI &amp; the Future of Engineering</h3>
+          </div>
+          <ul class="theme-links">
+            <li>
+              <a href="https://blog.zepedro.com/aae15f6724f8" target="_blank" rel="noopener">
+                <span class="theme-link-title">The borrowed sense ↗</span>
+                <span class="theme-link-meta">Why you can’t borrow AI’s engineering instinct</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://blog.zepedro.com/6e36f413896d" target="_blank" rel="noopener">
+                <span class="theme-link-title">The second grid problem ↗</span>
+                <span class="theme-link-meta">What microservices teach us about building in the age of AI</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://blog.zepedro.com/3b856194d880" target="_blank" rel="noopener">
+                <span class="theme-link-title">The ranger and the map ↗</span>
+                <span class="theme-link-meta">What platform teams become when AI coding agents build</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="theme-col">
+          <div class="theme-header">
+            <span class="theme-eyebrow">Track 02</span>
+            <h3 class="theme-title">Socio-Technical Leadership</h3>
+          </div>
+          <ul class="theme-links">
+            <li>
+              <a href="https://blog.zepedro.com/364aaead90d4" target="_blank" rel="noopener">
+                <span class="theme-link-title">The political capital ledger ↗</span>
+                <span class="theme-link-meta">Why some engineers go broke and never know it</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://blog.zepedro.com/cddbe6571a9d" target="_blank" rel="noopener">
+                <span class="theme-link-title">Thinner air, wider view ↗</span>
+                <span class="theme-link-meta">What nobody tells you about the staff engineer climb</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://blog.zepedro.com/b70fbe2563a7" target="_blank" rel="noopener">
+                <span class="theme-link-title">The test drive question ↗</span>
+                <span class="theme-link-meta">Why curious questions transform technical reviews</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="theme-col">
+          <div class="theme-header">
+            <span class="theme-eyebrow">Track 03</span>
+            <h3 class="theme-title">Evolutionary Architecture</h3>
+          </div>
+          <ul class="theme-links">
+            <li>
+              <a href="https://blog.zepedro.com/27b3ad92ac17" target="_blank" rel="noopener">
+                <span class="theme-link-title">Hard or wrong ↗</span>
+                <span class="theme-link-meta">How to tell the difference when you’re already committed</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://blog.zepedro.com/14bf1ceaeae6" target="_blank" rel="noopener">
+                <span class="theme-link-title">The gym membership principle ↗</span>
+                <span class="theme-link-meta">Why defining fitness functions isn’t using them</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://blog.zepedro.com/d008d1863c30" target="_blank" rel="noopener">
+                <span class="theme-link-title">The cartographer who stopped traveling ↗</span>
+                <span class="theme-link-meta">How familiarity hides friction in platforms you built</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="recent-heading">
+        <span class="label">Recent dispatches</span>
+      </div>
+
       <!-- BLOG_SPOTLIGHT_PLACEHOLDER - Do not remove this comment -->
       <a class="spotlight" href="https://blog.zepedro.com/fa95efd37f49" target="_blank"><span class="post-date">2026-10-11</span><div class="spotlight-body"><span class="spotlight-title">The wrong map: why the best question is a guess you expect to be corrected</span><p class="spotlight-excerpt">Why showing an expert your draft understanding gets better answers than asking them to explain</p></div><span class="post-arrow">↗</span></a>
       <!-- BLOG_POSTS_PLACEHOLDER - Do not remove this comment -->
@@ -637,28 +825,24 @@
         <a class="post" href="https://blog.zepedro.com/4b587fd65f38" target="_blank"><span class="post-date">2026-04-11</span><div class="post-body"><span class="post-title">The garden that grows back wild: why resilience decays the moment you stop practicing it</span><p class="post-excerpt">How drift into failure, organizational forgetting, and the quiet physics of entropy turn well-built resilience into an illusion</p></div><span class="post-arrow">↗</span></a>
         <a class="post" href="https://blog.zepedro.com/aae15f6724f8" target="_blank"><span class="post-date">2026-04-06</span><div class="post-body"><span class="post-title">The borrowed sense: why you can’t borrow AI’s engineering instinct</span><p class="post-excerpt">What AI coding tools generate, what they can’t transfer, and how engineers at every level can tell the difference</p></div><span class="post-arrow">↗</span></a>
       </div>
+      <div class="archive-cta">
+        <a href="https://blog.zepedro.com" target="_blank" rel="noopener">Read all 48+ essays on the publication at blog.zepedro.com <span class="post-arrow">↗</span></a>
+      </div>
     </section>
 
     <section class="section" id="elsewhere">
       <div class="section-head">
         <span class="label">Elsewhere</span>
-        <h2>Find me in the usual places, and a couple unusual ones.</h2>
+        <h2>Connect, collaborate, and read across the web.</h2>
       </div>
       <ul class="links">
         <li><a href="https://www.linkedin.com/in/zepedro" target="_blank" rel="noopener"><span
               class="link-idx">01</span><span class="link-name">LinkedIn</span><span class="link-arrow">↗</span></a>
         </li>
         <li><a href="https://blog.zepedro.com" target="_blank" rel="noopener"><span class="link-idx">02</span><span
-              class="link-name">Medium</span><span class="link-arrow">↗</span></a></li>
+              class="link-name">Publication &amp; Essays</span><span class="link-arrow">↗</span></a></li>
         <li><a href="https://github.com/zepedrosilva" target="_blank" rel="noopener"><span
               class="link-idx">03</span><span class="link-name">GitHub</span><span class="link-arrow">↗</span></a></li>
-        <li><a href="https://x.com/zepedro" target="_blank" rel="noopener"><span class="link-idx">04</span><span
-              class="link-name">X</span><span class="link-arrow">↗</span></a></li>
-        <li><a href="https://bsky.app/profile/zepedro.com" target="_blank" rel="noopener"><span
-              class="link-idx">05</span><span class="link-name">Bluesky</span><span class="link-arrow">↗</span></a></li>
-        <li><a href="https://www.mentoring-club.com/the-mentors/jose-silva" target="_blank" rel="noopener"><span
-              class="link-idx">06</span><span class="link-name">Mentoring Club</span><span
-              class="link-arrow">↗</span></a></li>
       </ul>
     </section>
 
@@ -702,27 +886,12 @@
 
   <script>
     const words = [
-      "Software architect, technical lead, passionate developer, compulsive tester, usability geek, tinkerer, wannabe barista.",
-      "Code whisperer, team navigator, obsessive optimizer, bug hunter, interface dreamer, hobbyist inventor, coffee enthusiast.",
-      "Digital craftsman, agile captain, code poet, bug banisher, design perfectionist, perpetual tinkerer, caffeine devotee.",
-      "System designer, solution weaver, relentless debugger, UX admirer, gadget tinkerer, and part-time coffee chemist.",
-      "Architect of code, builder of teams, refactor addict, test addict, interface fan, hobbyist inventor, coffee enthusiast.",
-      "Creative coder, collaborative captain, problem solver, bug eliminator, UI wizard, side-project aficionado, coffee philosopher.",
-      "Technical storyteller, development guide, error eradicator, pixel pusher, gadget fiddler, coffee brewmaster in training.",
-      "Software sculptor, agile navigator, bug slayer, UX enthusiast, tinkering hobbyist, coffee lab experimenter.",
-      "Code architect, team motivator, detail obsessive, usability nerd, lifelong learner, coffee aficionado.",
-      "Framework builder, sprint leader, problem whisperer, edge-case detective, design advocate, gadget explorer, espresso devotee.",
-      "Digital dreamer, scrum master, testing fanatic, UX explorer, maker of gizmos, wannabe espresso artist.",
-      "Code crafter, innovation driver, QA loyalist, interface nerd, tool hacker, roaster apprentice.",
-      "System strategist, debugging detective, refactor wizard, UX hobbyist, weekend tinkerer, espresso adventurer.",
-      "Software designer, code philosopher, bug crusher, user advocate, gizmo lover, amateur barista.",
-      "Technical storyteller, error hunter, modular magician, interaction dreamer, idea tinkerer, coffee perfectionist.",
-      "Solution strategist, pattern enthusiast, code troubleshooter, usability seeker, gizmo tweaker, coffee daydreamer.",
-      "Development guru, code caretaker, quality champion, UI admirer, innovation seeker, espresso scholar.",
-      "Software builder, agile shepherd, test enthusiast, bug eliminator, pixel enthusiast, coffee aficionado-in-training.",
-      "System crafter, task master, relentless debugger, user-centered thinker, weekend DIYer, espresso apprentice.",
-      "Creative coder, innovation guide, bug buster, design fanatic, gadget builder, caffeine driven dreamer.",
-      "Tech visionary, development coach, detail hunter, usability fan, playful inventor, coffee lab tinkerer."
+      "Architect of systems, collector of metaphors, Chief Architect at Mews.",
+      "Passionate about distributed systems, developer flow, and the quiet physics of software.",
+      "Exploring what happens to engineering instinct when machines write the code.",
+      "Student of Conway's Law, builder of platforms, allergy to ivory towers.",
+      "Drawing boxes, erasing boxes, and trying to leave the code better than I found it.",
+      "Software architect, essayist, tinkerer, and excessive coffee enthusiast."
     ];
     const pill = document.getElementById('tagline');
     const rest = document.getElementById('tagline-rest');
