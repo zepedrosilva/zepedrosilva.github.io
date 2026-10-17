@@ -1,0 +1,50 @@
+# Curated Flagship Tracks
+# To update your featured essays on your website and GitHub profile,
+# simply change the article IDs, titles, or descriptions here.
+# Running update_blog_posts.py will automatically regenerate the content.
+
+tracks:
+  - id: "ai-engineering"
+    name: "AI & the Future of Engineering"
+    subtitle: "Track 01"
+    icon: "🤖"
+    articles:
+      - id: "aae15f6724f8"
+        title: "The borrowed sense"
+        meta: "Why you can’t borrow AI’s engineering instinct"
+      - id: "6e36f413896d"
+        title: "The second grid problem"
+        meta: "What microservices teach us about building in the age of AI"
+      - id: "3b856194d880"
+        title: "The ranger and the map"
+        meta: "What platform teams become when AI coding agents build"
+
+  - id: "socio-technical"
+    name: "Socio-Technical Leadership"
+    subtitle: "Track 02"
+    icon: "👥"
+    articles:
+      - id: "364aaead90d4"
+        title: "The political capital ledger"
+        meta: "Why some engineers go broke and never know it"
+      - id: "cddbe6571a9d"
+        title: "Thinner air, wider view"
+        meta: "What nobody tells you about the staff engineer climb"
+      - id: "b70fbe2563a7"
+        title: "The test drive question"
+        meta: "Why curious questions transform technical reviews"
+
+  - id: "evolutionary-architecture"
+    name: "Evolutionary Architecture"
+    subtitle: "Track 03"
+    icon: "🏛️"
+    articles:
+      - id: "27b3ad92ac17"
+        title: "Hard or wrong"
+        meta: "How to tell the difference when you’re already committed"
+      - id: "14bf1ceaeae6"
+        title: "The gym membership principle"
+        meta: "Why defining fitness functions isn’t using them"
+      - id: "d008d1863c30"
+        title: "The cartographer who stopped traveling"
+        meta: "How familiarity hides friction in platforms you built"

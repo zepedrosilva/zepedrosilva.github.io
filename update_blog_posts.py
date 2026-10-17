@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import os
 import feedparser
 import re
 from datetime import datetime
@@ -195,6 +196,46 @@ def generate_blog_section(posts):
     return section
 
 
+def load_curated_config(config_path="curated.yaml"):
+    """load curated tracks config if present"""
+    if not os.path.exists(config_path):
+        return None
+    try:
+        import yaml
+        with open(config_path, 'r', encoding='utf-8') as f:
+            return yaml.safe_load(f)
+    except Exception as e:
+        print(f"Warning: Could not parse {config_path}: {e}")
+        return None
+
+
+def generate_curated_themes_html(curated_data, base_url="https://blog.zepedro.com"):
+    """generate HTML for curated tracks grid from config"""
+    tracks = curated_data.get('tracks', [])
+    html = '      <div class="themes-grid">\n'
+    for i, track in enumerate(tracks, 1):
+        subtitle = track.get('subtitle', f"Track {i:02d}")
+        html += '        <div class="theme-col">\n'
+        html += '          <div class="theme-header">\n'
+        html += f'            <span class="theme-eyebrow">{subtitle}</span>\n'
+        html += f'            <h3 class="theme-title">{track["name"]}</h3>\n'
+        html += '          </div>\n'
+        html += '          <ul class="theme-links">\n'
+        for art in track.get('articles', []):
+            art_id = art['id']
+            url = f"{base_url}/{art_id}" if not art_id.startswith('http') else art_id
+            html += '            <li>\n'
+            html += f'              <a href="{url}" target="_blank" rel="noopener">\n'
+            html += f'                <span class="theme-link-title">{art["title"]} ↗</span>\n'
+            html += f'                <span class="theme-link-meta">{art["meta"]}</span>\n'
+            html += '              </a>\n'
+            html += '            </li>\n'
+        html += '          </ul>\n'
+        html += '        </div>\n'
+    html += '      </div>'
+    return html
+
+
 def update_html(posts):
     try:
         with open('index.html', 'r', encoding='utf-8') as f:
@@ -207,10 +248,26 @@ def update_html(posts):
         print("No posts found in the feed")
         return False
 
+    new_content = content
+
+    # update curated tracks if curated.yaml exists
+    curated_data = load_curated_config()
+    if curated_data:
+        curated_start = '<!-- CURATED_THEMES_PLACEHOLDER - Do not remove this comment -->'
+        curated_end = '<!-- /CURATED_THEMES_PLACEHOLDER -->'
+        if curated_start in new_content and curated_end in new_content:
+            curated_html = generate_curated_themes_html(curated_data)
+            new_content = re.sub(
+                re.escape(curated_start) + r'.*?' + re.escape(curated_end),
+                f'{curated_start}\n{curated_html}\n      {curated_end}',
+                new_content,
+                flags=re.DOTALL
+            )
+
     spotlight_placeholder = '<!-- BLOG_SPOTLIGHT_PLACEHOLDER - Do not remove this comment -->'
     list_placeholder = '<!-- BLOG_POSTS_PLACEHOLDER - Do not remove this comment -->'
 
-    if spotlight_placeholder not in content or list_placeholder not in content:
+    if spotlight_placeholder not in new_content or list_placeholder not in new_content:
         print("Warning: one or both placeholders not found in index.html")
         return False
 
@@ -221,7 +278,7 @@ def update_html(posts):
     new_content = re.sub(
         re.escape(spotlight_placeholder) + r'.*?' + re.escape(list_placeholder),
         f'{spotlight_placeholder}\n{spotlight_html}\n      {list_placeholder}',
-        content,
+        new_content,
         flags=re.DOTALL,
     )
 
