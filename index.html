@@ -4,13 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>José Silva (Zé Pedro) — Architect &amp; Writer</title>
-  <meta name="description" content="José Silva (Zé Pedro) — Systems architect, writer, and essayist based in Dublin. Exploring distributed systems, socio-technical leadership, and evolutionary platforms.">
+  <title>José Silva — Systems Architect &amp; Essayist</title>
+  <meta name="description" content="Personal site and publication archive of José Silva (Zé Pedro), Systems Architect and essayist on distributed systems, socio-technical leadership, and evolutionary architecture.">
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet">
   <style>
     :root {
@@ -21,26 +21,34 @@
       --mute-2: #6f6f6f;
       --line: #e8e8e8;
       --accent: #2563eb;
-      --accent-soft: #dbeafe;
+
       --font-display: 'Inter', system-ui, sans-serif;
       --font-body: 'Inter', system-ui, sans-serif;
-      --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
-      --pad-y: 64px;
-      --pad-x: 72px;
-      --gap: 40px;
-      --fs-eyebrow: 11px;
-      --fs-body: 14px;
-      --fs-name: 68px;
-      --fs-tagline: 32px;
-      --lh-body: 1.55;
-      --lh-display: 0.98;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      /* Tightened spacing variables */
+      --page-pad-y: 48px;
+      --page-pad-x: 48px;
+      --rail: 140px;
+      --gap: 32px;
+      --sec-sp: 56px;
+
+      /* Typographic Progression */
+      --fs-label: 11.5px;
+      --fs-meta: 13px;
+      --fs-body: 15px;
+      --fs-article: 17px;
+      --fs-h3: 22px;
+      --fs-h2: 36px;
+      --fs-tagline: 36px;
+      --fs-name: 108px;
+
+      --lh-body: 1.58;
+      --lh-heading: 1.15;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
-    html,
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       padding: 0;
@@ -53,24 +61,12 @@
       text-rendering: optimizeLegibility;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    ::selection {
-      background: var(--ink);
-      color: var(--paper);
-    }
+    a { color: inherit; text-decoration: none; }
 
     .page {
-      max-width: 1280px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: var(--pad-y) var(--pad-x);
+      padding: var(--page-pad-y) var(--page-pad-x) 72px;
     }
 
     /* Header */
@@ -78,198 +74,216 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
     }
-
-    .logo {
-      display: inline-flex;
-      align-items: center;
-    }
-
-    .logo svg {
-      height: 30px;
-      width: auto;
-      fill: var(--ink);
-    }
-
+    .logo svg { height: 28px; fill: var(--ink); }
     .nav {
       display: flex;
-      gap: 28px;
-      margin-left: auto;
+      gap: 24px;
       font-family: var(--font-mono);
-      font-size: var(--fs-eyebrow);
-      letter-spacing: 0.16em;
+      font-size: var(--fs-label);
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--mute-2);
     }
-
-    .nav a {
-      position: relative;
-      transition: color 0.2s;
-    }
-
-    .nav a:hover {
-      color: var(--ink);
-    }
-
-    .nav a::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: -4px;
-      height: 1px;
-      background: currentColor;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s;
-    }
-
-    .nav a:hover::after {
-      transform: scaleX(1);
-    }
+    .nav a:hover { color: var(--ink); }
 
     /* Hero */
     .hero {
-      margin-top: calc(var(--pad-y) * 1.4);
+      margin-top: 56px;
     }
-
     .name {
       font-family: 'Instrument Serif', Georgia, serif;
       font-weight: 400;
-      font-size: 108px;
-      line-height: var(--lh-display);
+      font-size: var(--fs-name);
+      line-height: 0.95;
       letter-spacing: -0.045em;
-      margin: 24px 0 0;
+      margin: 0;
     }
-
     .name .caret {
       display: inline-block;
       width: 0.08em;
-      height: 0.9em;
+      height: 0.88em;
       background: var(--accent);
       margin-left: 0.08em;
       vertical-align: -0.05em;
       animation: blink 1.1s steps(1) infinite;
     }
-
-    @keyframes blink {
-      50% {
-        opacity: 0;
-      }
-    }
-
+    @keyframes blink { 50% { opacity: 0; } }
     .name .aka {
       display: inline-block;
       font-family: var(--font-mono);
-      font-size: 0.12em;
+      font-size: 13px;
       font-weight: 400;
       color: var(--mute-2);
-      letter-spacing: 0;
-      vertical-align: 1.5em;
-      margin-left: 0.4em;
+      letter-spacing: 0.02em;
+      vertical-align: 1.6em;
+      margin-left: 0.5em;
+      white-space: nowrap;
     }
 
+    /* Tagline: Preserved at 36px */
     .tagline {
       font-family: var(--font-display);
       font-weight: 500;
-      font-size: 36px;
+      font-size: var(--fs-tagline);
       line-height: 1.22;
       letter-spacing: -0.025em;
-      margin: 32px 0 0;
-      max-width: 100%;
+      margin: 24px 0 0;
       min-height: 2.6em;
     }
+    .tagline .primary { color: var(--ink); }
+    .tagline .rotating { color: var(--accent); font-weight: 500; }
+    .tagline .muted { color: var(--mute); font-weight: 400; }
 
-    .tagline .primary {
-      color: var(--ink);
-    }
-
-    .tagline .muted {
-      color: var(--mute);
-    }
-
-    .tagline .rotating {
-      display: inline;
-      color: var(--accent);
-      background: transparent;
-      padding: 0;
-      margin: 0;
-      font-weight: 600;
-      transition: color 0.3s;
-    }
-
-
-    /* Sections */
+    /* Sections: Tightened 56px cadence */
     .section {
-      margin-top: calc(var(--pad-y) * 1.1);
-      padding-top: 48px;
+      margin-top: var(--sec-sp);
+      padding-top: 28px;
       border-top: 1px solid var(--line);
     }
-
-    .section-head {
+    .section-grid {
       display: grid;
-      grid-template-columns: 15% 1fr;
+      grid-template-columns: var(--rail) 1fr;
       gap: var(--gap);
-      margin-bottom: 48px;
     }
-
-    .section-head h2 {
-      font-family: var(--font-display);
-      font-weight: 600;
-      font-size: 36px;
-      letter-spacing: -0.025em;
-      line-height: 1.05;
-      margin: 0;
-    }
-
     .label {
       font-family: var(--font-mono);
-      font-size: var(--fs-eyebrow);
+      font-size: var(--fs-label);
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--mute-2);
+      padding-top: 8px;
     }
 
-    .section-head .label {
-      padding-top: 10px;
+    /* Section Title: Preserved at 36px */
+    .section-title {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: var(--fs-h2);
+      line-height: var(--lh-heading);
+      letter-spacing: -0.025em;
+      margin: 0 0 28px;
     }
 
-    /* About */
-    .about {
+    /* About: Consistent 15px default font */
+    .about-cols {
       display: grid;
-      grid-template-columns: 15% 1fr 1fr;
-      gap: var(--gap);
-    }
-
-    .about .eyebrow {
-      font-family: var(--font-mono);
-      font-size: var(--fs-eyebrow);
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--mute-2);
-      display: block;
-    }
-
-    .about .col {
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
       font-size: var(--fs-body);
-      line-height: 1.65;
+      line-height: var(--lh-body);
       color: var(--ink-2);
     }
+    .about-cols p { margin: 0 0 16px; }
+    .about-cols a { text-decoration: underline; text-underline-offset: 3px; }
 
-    .about .col:first-of-type {
-      grid-column: 2;
+    /* Curated Tracks */
+    .themes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-bottom: 36px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--line);
+    }
+    .theme-col { display: flex; flex-direction: column; gap: 14px; }
+    .theme-header { display: flex; flex-direction: column; gap: 4px; }
+    .theme-eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--fs-label);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mute-2);
+    }
+    /* H3 Track Title: 22px progression */
+    .theme-title {
+      font-family: var(--font-display);
+      font-size: var(--fs-h3);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin: 0;
+      color: var(--ink);
+    }
+    .theme-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .theme-links li a {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    /* H4 Article Title: 17px progression */
+    .theme-link-title {
+      font-size: var(--fs-article);
+      font-weight: 600;
+      line-height: 1.35;
+      letter-spacing: -0.015em;
+      color: var(--ink);
+      transition: color 0.2s;
+    }
+    .theme-links li a:hover .theme-link-title { color: var(--accent); }
+    .theme-link-meta {
+      font-size: var(--fs-meta);
+      color: var(--mute-2);
+      line-height: 1.45;
     }
 
-    .about .col:not(:first-of-type) {
-      grid-column: 3;
+    /* Recent Dispatches: Consistent typography between spotlight & list */
+    .recent-heading {
+      margin-top: 36px;
+      margin-bottom: 14px;
+    }
+    .recent-heading .label {
+      padding-top: 0;
     }
 
-    .about .col p {
-      margin: 0 0 1.1em;
+    .spotlight {
+      display: grid;
+      grid-template-columns: 100px 1fr 24px;
+      gap: var(--gap);
+      padding: 16px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      align-items: start;
     }
 
-    /* Blog / elsewhere list */
+    .spotlight-body,
+    .post-body {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .spotlight-title,
+    .post-title {
+      font-size: var(--fs-article);
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      line-height: 1.35;
+      color: var(--ink);
+      transition: color 0.2s;
+    }
+
+    .spotlight:hover .spotlight-title,
+    .post:hover .post-title {
+      color: var(--accent);
+    }
+
+    .spotlight-excerpt,
+    .post-excerpt {
+      font-size: var(--fs-meta);
+      font-weight: 400;
+      color: var(--mute-2);
+      margin: 0;
+      line-height: 1.45;
+    }
+
     .blog-list {
       display: flex;
       flex-direction: column;
@@ -277,410 +291,160 @@
 
     .post {
       display: grid;
-      grid-template-columns: 15% 1fr 24px;
-      align-items: start;
+      grid-template-columns: 100px 1fr 24px;
       gap: var(--gap);
-      padding: 14px 0;
+      padding: 12px 0;
       border-bottom: 1px solid var(--line);
-      transition: padding 0.25s;
+      align-items: start;
+      transition: padding-left 0.2s;
     }
 
-    .post-body {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .post-excerpt {
-      font-size: 12px;
-      color: var(--mute-2);
-      line-height: var(--lh-body);
-      margin: 0;
+    .post:hover {
+      padding-left: 6px;
     }
 
     .post:last-child {
       border-bottom: none;
     }
 
-    .post:hover {
-      padding-left: 8px;
-    }
-
     .post-date {
       font-family: var(--font-mono);
-      font-size: 12px;
+      font-size: var(--fs-meta);
       color: var(--mute-2);
       font-feature-settings: "tnum";
-    }
-
-    .post-title {
-      font-size: var(--fs-body);
-      font-weight: 700;
-      color: var(--ink);
-      line-height: 1.3;
-      letter-spacing: -0.02em;
-      transition: color 0.2s;
-    }
-
-    .post:hover .post-title {
-      color: var(--accent);
     }
 
     .post-arrow {
       color: var(--mute);
       font-size: 14px;
-      transition: transform 0.25s, color 0.2s;
+      transition: transform 0.2s, color 0.2s;
     }
 
+    .spotlight:hover .post-arrow,
     .post:hover .post-arrow {
       transform: translate(3px, -3px);
       color: var(--accent);
     }
 
-    /* Spotlight — latest post featured above the list */
-    .spotlight {
-      display: grid;
-      grid-template-columns: 15% 1fr 24px;
-      align-items: start;
-      gap: var(--gap);
-      padding: 20px 0;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      color: inherit;
-    }
-
-    .spotlight-body {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .spotlight-title {
-      font-size: var(--fs-body);
-      font-weight: 700;
-      color: var(--ink);
-      line-height: 1.3;
-      letter-spacing: -0.02em;
-      transition: color 0.2s;
-    }
-
-    .spotlight-excerpt {
-      font-size: 12px;
-      color: var(--mute-2);
-      line-height: var(--lh-body);
-      margin: 0;
-    }
-
-    .spotlight:hover .spotlight-title {
-      color: var(--accent);
-    }
-
-    .spotlight:hover .post-arrow {
-      transform: translate(3px, -3px);
-      color: var(--accent);
-    }
-
-    /* Curated Themes */
-    .themes-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-      margin-left: calc(15% + var(--gap));
-      margin-bottom: 48px;
-      padding-bottom: 40px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .theme-col {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .theme-header {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .theme-eyebrow {
-      font-family: var(--font-mono);
-      font-size: var(--fs-eyebrow);
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--mute-2);
-    }
-
-    .theme-title {
-      font-family: var(--font-display);
-      font-size: 18px;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      line-height: 1.25;
-      margin: 0;
-      color: var(--ink);
-    }
-
-    .theme-links {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .theme-links li a {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-      color: inherit;
-    }
-
-    .theme-link-title {
-      font-size: 13.5px;
-      font-weight: 600;
-      color: var(--ink);
-      line-height: 1.35;
-      letter-spacing: -0.015em;
-      transition: color 0.2s;
-    }
-
-    .theme-links li a:hover .theme-link-title {
-      color: var(--accent);
-    }
-
-    .theme-link-meta {
-      font-size: 12px;
-      color: var(--mute-2);
-      line-height: var(--lh-body);
-    }
-
-    .recent-heading {
-      margin-left: calc(15% + var(--gap));
-      margin-bottom: 16px;
-    }
-
     .archive-cta {
       display: flex;
       justify-content: flex-end;
-      padding-top: 24px;
-      margin-left: calc(15% + var(--gap));
+      padding-top: 20px;
     }
 
     .archive-cta a {
       font-family: var(--font-mono);
-      font-size: 12px;
+      font-size: var(--fs-meta);
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--mute-2);
+      transition: color 0.2s;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      transition: color 0.2s;
     }
 
     .archive-cta a:hover {
       color: var(--accent);
     }
 
-    /* Footer */
-    .footer {
-      margin-top: calc(var(--pad-y) * 1.1);
-      padding-top: 32px;
-      border-top: 1px solid var(--line);
-      display: flex;
-      flex-direction: column;
-      gap: 0;
+    .archive-cta a:hover .post-arrow {
+      transform: translate(3px, -3px);
+      color: var(--accent);
     }
 
-    .colophon {
-      display: grid;
-      grid-template-columns: 15% 1fr;
-      gap: var(--gap);
-      padding-bottom: 40px;
-      border-bottom: 1px solid var(--line);
-      align-items: start;
-    }
-
-    .colophon-cells {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 32px;
-    }
-
-    .colophon-cell {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .col-label {
-      font-family: var(--font-mono);
-      font-size: var(--fs-eyebrow);
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--mute-2);
-    }
-
-    .col-value {
-      font-family: var(--font-display);
-      font-size: 20px;
-      letter-spacing: -0.01em;
-      color: var(--ink);
-      font-variant-numeric: tabular-nums;
-    }
-
-    .footer-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding-top: 32px;
-    }
-
-    .footer .logo svg {
-      height: 15px;
-    }
-
-    .footer .footer-text {
-      font-family: var(--font-mono);
-      font-size: var(--fs-eyebrow);
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--mute-2);
-    }
-
-    @media (max-width: 720px) {
-      .colophon {
-        grid-template-columns: 1fr;
-      }
-
-      .colophon-cells {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    /* Elsewhere links */
+    /* Elsewhere */
     .links {
       list-style: none;
-      padding: 0 0 14px;
+      padding: 0;
       margin: 0;
-      margin-left: calc(15% + var(--gap));
       display: flex;
       flex-wrap: wrap;
-      column-gap: 32px;
-      row-gap: 14px;
+      gap: 28px;
     }
-
     .links li a {
       display: inline-flex;
       align-items: baseline;
       gap: 8px;
-      color: var(--ink);
-      text-decoration: none;
     }
-
-    .link-idx {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--mute-2);
-      letter-spacing: 0.06em;
-    }
-
+    .link-idx { font-family: var(--font-mono); font-size: 11px; color: var(--mute-2); }
     .link-name {
-      font-family: var(--font-display);
-      font-size: 16.5px;
+      font-size: 17px;
       font-weight: 500;
-      letter-spacing: -0.02em;
-      display: inline-block;
-      line-height: 1.2;
+      letter-spacing: -0.015em;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
     }
+    .links li a:hover .link-name { border-bottom-color: var(--ink); }
 
-    .link-arrow {
-      font-size: 12px;
-      color: var(--mute);
+    /* Footer */
+    .footer {
+      margin-top: var(--sec-sp);
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
     }
-
-    .links li a:hover .link-name {
-      border-bottom: 1px solid var(--ink);
+    .colophon-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--line);
+    }
+    .col-cell { display: flex; flex-direction: column; gap: 4px; }
+    .col-label {
+      font-family: var(--font-mono);
+      font-size: var(--fs-label);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--mute-2);
+    }
+    .col-val {
+      font-family: var(--font-display);
+      font-size: 19px;
+      font-weight: 500;
+      font-variant-numeric: tabular-nums;
+    }
+    .footer-bar {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-top: 24px;
+      font-family: var(--font-mono);
+      font-size: var(--fs-label);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mute-2);
+    }
+    .footer-bar .logo svg {
+      height: 16px;
+      fill: var(--ink);
+      vertical-align: middle;
     }
 
     @media (max-width: 900px) {
+      .section-grid { grid-template-columns: 1fr; gap: 12px; }
+      .about-cols { grid-template-columns: 1fr; }
+      .themes-grid { grid-template-columns: 1fr; }
+      .colophon-grid { grid-template-columns: repeat(2, 1fr); }
       :root {
-        --pad-x: 32px;
-        --pad-y: 80px;
-        --fs-name: 80px;
-        --fs-tagline: 24px;
-      }
-
-      .section-head {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-
-      .section-head .label {
-        padding-top: 0;
-      }
-
-      .about {
-        grid-template-columns: 1fr;
-      }
-
-      .about .col:first-of-type,
-      .about .col:not(:first-of-type) {
-        grid-column: 1;
-        margin-top: 0;
-      }
-
-      .tagline,
-      .section-head h2 {
-        font-size: 28px;
-      }
-
-      .tagline {
-        max-width: 100%;
-      }
-
-      .post,
-      .spotlight {
-        grid-template-columns: 80px 1fr 20px;
-        gap: 12px;
-      }
-
-      .links,
-      .themes-grid,
-      .recent-heading,
-      .archive-cta {
-        margin-left: 0;
-      }
-
-      .themes-grid {
-        grid-template-columns: 1fr;
-        gap: 28px;
+        --fs-name: 76px;
+        --fs-tagline: 28px;
+        --fs-h2: 28px;
       }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 640px) {
       :root {
-        --pad-x: 20px;
-        --pad-y: 56px;
-        --fs-name: 52px;
-        --fs-tagline: 20px;
+        --page-pad-x: 24px;
+        --page-pad-y: 32px;
+        --fs-name: 58px;
+        --fs-tagline: 24px;
+        --fs-h2: 24px;
       }
-
-      .tagline,
-      .section-head h2 {
-        font-size: 22px;
-      }
-
-      .post,
-      .spotlight {
-        grid-template-columns: 70px 1fr 18px;
-        gap: 10px;
-      }
-
-      .nav {
-        gap: 16px;
+      .spotlight,
+      .post {
+        grid-template-columns: 85px 1fr 20px;
+        gap: 14px;
       }
     }
   </style>
@@ -688,21 +452,18 @@
 
 <body>
   <main class="page">
-
     <header class="header" id="top">
       <a href="#top" class="logo" aria-label="José Silva">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 196 129">
           <title>José Silva (aka Zé Pedro)</title>
-          <path
-            d="m178.19779,7.34586c11.74545,8.47277 17.22578,19.59523 16.96791,33.68493c-0.17626,9.63098 0.02482,19.26824 -0.04573,28.90194c-0.1556,21.2457 -16.96249,37.90384 -38.25067,37.95775c-9.96648,0.02526 -19.9331,0.00431 -30.14097,0.00431c0,-11.08596 0,-21.76598 0,-33.10015c8.6505,0 17.25562,0.02821 25.86046,-0.00836c7.76451,-0.03298 9.20987,-1.49272 9.23266,-9.22422c0.02171,-7.36726 0.01625,-14.73468 0.00157,-22.10199c-0.01603,-8.04105 -1.20263,-9.26498 -9.0309,-9.28592c-7.36727,-0.01971 -14.73468,-0.01404 -22.102,-0.0016c-7.97681,0.01345 -9.25943,1.21535 -9.26985,9.13786c-0.03453,26.2579 -0.01313,52.51589 -0.01317,78.77384c0,1.86166 0.00002,3.72331 0.00002,5.90378c-11.20032,0 -22.01803,0 -33.30587,0c0,-3.36497 0,-6.53223 0,-9.6995c0,-26.25795 -0.02503,-52.51593 0.00779,-78.77383c0.02707,-21.65775 16.73724,-38.39935 38.31187,-38.44163c9.82308,-0.01926 19.65066,0.17868 29.46795,-0.06022c8.01418,-0.19501 15.27066,1.8251 22.30894,6.33301l-0.00001,0z" />
-          <path
-            d="m40.46205,107.83222c-6.61008,0 -12.65315,0.013 -18.69614,-0.00309c-8.78196,-0.02334 -11.55495,-3.59903 -9.07658,-12.1633c3.66209,-12.6547 7.53865,-25.24729 11.32042,-37.86737c2.31094,-7.71181 4.61543,-15.42555 7.09032,-23.69836c-10.41015,0 -20.13983,0 -30.10007,0c0,-11.08964 0,-21.76683 0,-33.08348c3.9333,0 7.82307,-0.00001 11.71284,0c16.24065,0.00007 32.4815,-0.04859 48.72185,0.02027c8.43457,0.03575 11.02863,3.29134 8.66284,11.43788c-5.66792,19.51747 -11.59359,38.96007 -17.41024,58.43438c-0.31371,1.05025 -0.58167,2.11418 -1.01897,3.71313c10.51451,0 20.60529,0 31.01543,0c0,11.13585 0,21.81463 0,33.20993c-13.88708,0 -27.77087,0 -42.22171,0l0.00001,0.00001z" />
+          <path d="m178.19779,7.34586c11.74545,8.47277 17.22578,19.59523 16.96791,33.68493c-0.17626,9.63098 0.02482,19.26824 -0.04573,28.90194c-0.1556,21.2457 -16.96249,37.90384 -38.25067,37.95775c-9.96648,0.02526 -19.9331,0.00431 -30.14097,0.00431c0,-11.08596 0,-21.76598 0,-33.10015c8.6505,0 17.25562,0.02821 25.86046,-0.00836c7.76451,-0.03298 9.20987,-1.49272 9.23266,-9.22422c0.02171,-7.36726 0.01625,-14.73468 0.00157,-22.10199c-0.01603,-8.04105 -1.20263,-9.26498 -9.0309,-9.28592c-7.36727,-0.01971 -14.73468,-0.01404 -22.102,-0.0016c-7.97681,0.01345 -9.25943,1.21535 -9.26985,9.13786c-0.03453,26.2579 -0.01313,52.51589 -0.01317,78.77384c0,1.86166 0.00002,3.72331 0.00002,5.90378c-11.20032,0 -22.01803,0 -33.30587,0c0,-3.36497 0,-6.53223 0,-9.6995c0,-26.25795 -0.02503,-52.51593 0.00779,-78.77383c0.02707,-21.65775 16.73724,-38.39935 38.31187,-38.44163c9.82308,-0.01926 19.65066,0.17868 29.46795,-0.06022c8.01418,-0.19501 15.27066,1.8251 22.30894,6.33301l-0.00001,0z" />
+          <path d="m40.46205,107.83222c-6.61008,0 -12.65315,0.013 -18.69614,-0.00309c-8.78196,-0.02334 -11.55495,-3.59903 -9.07658,-12.1633c3.66209,-12.6547 7.53865,-25.24729 11.32042,-37.86737c2.31094,-7.71181 4.61543,-15.42555 7.09032,-23.69836c-10.41015,0 -20.13983,0 -30.10007,0c0,-11.08964 0,-21.76683 0,-33.08348c3.9333,0 7.82307,-0.00001 11.71284,0c16.24065,0.00007 32.4815,-0.04859 48.72185,0.02027c8.43457,0.03575 11.02863,3.29134 8.66284,11.43788c-5.66792,19.51747 -11.59359,38.96007 -17.41024,58.43438c-0.31371,1.05025 -0.58167,2.11418 -1.01897,3.71313c10.51451,0 20.60529,0 31.01543,0c0,11.13585 0,21.81463 0,33.20993c-13.88708,0 -27.77087,0 -42.22171,0l0.00001,0.00001z" />
         </svg>
       </a>
       <nav class="nav" aria-label="Primary">
-        <a href="#about">about</a>
-        <a href="#writing">writing</a>
-        <a href="#elsewhere">elsewhere</a>
+        <a href="#about">About</a>
+        <a href="#writing">Writing</a>
+        <a href="#elsewhere">Elsewhere</a>
       </nav>
     </header>
 
@@ -717,25 +478,33 @@
       </p>
     </section>
 
-    <section class="section about" id="about">
-      <span class="eyebrow">About</span>
-      <div class="col">
-        <p>I grew up in Portugal and now call Dublin home. My path from writing my first lines of code to guiding architecture across large-scale distributed systems has been shaped by a simple realization: the hardest part of building software is almost never the code itself—it’s how systems, teams, and human habits fit together.</p>
-        <p>I'm that person who still gets a genuine kick out of an elegant refactor, the quiet satisfaction of deleting 2,000 lines of dead code, or sketching an architecture diagram that makes a sprawling problem feel suddenly obvious. I believe great architecture isn't handed down from an ivory tower; it’s about clearing away friction so engineers can build with momentum and pride.</p>
-      </div>
-      <div class="col">
-        <p>These days, I spend much of my time thinking about evolutionary platforms, distributed resilience, and what the rise of AI tools means for the craft of engineering. When machines can generate infinite syntax in seconds, human discernment, taste, and architectural judgment matter more than ever.</p>
-        <p>Writing is how I untangle my own thinking. Because software architecture is invisible, I rely on metaphors—wild gardens, police sketch artists, cartographers who stopped traveling—to give complex ideas a tangible shape. When I’m not sketching systems or writing on <a href="https://blog.zepedro.com" target="_blank" rel="noopener" style="text-decoration: underline; text-underline-offset: 3px;">blog.zepedro.com</a>, you’ll find me tinkering, drinking far too much espresso, and enjoying life on a rainy Dublin afternoon.</p>
+    <!-- About Section -->
+    <section class="section" id="about">
+      <div class="section-grid">
+        <span class="label">About</span>
+        <div>
+          <div class="about-cols">
+            <div>
+              <p>I grew up in Portugal and now call Dublin home. My path from writing my first lines of code to guiding architecture across large-scale distributed systems has been shaped by a simple realization: the hardest part of building software is almost never the code itself—it’s how systems, teams, and human habits fit together.</p>
+              <p>I'm that person who still gets a genuine kick out of an elegant refactor, the quiet satisfaction of deleting 2,000 lines of dead code, or sketching an architecture diagram that makes a sprawling problem feel suddenly obvious. I believe great architecture isn't handed down from an ivory tower; it’s about clearing away friction so engineers can build with momentum and pride.</p>
+            </div>
+            <div>
+              <p>These days, I spend much of my time thinking about evolutionary platforms, distributed resilience, and what the rise of AI tools means for the craft of engineering. When machines can generate infinite syntax in seconds, human discernment, taste, and architectural judgment matter more than ever.</p>
+              <p>Writing is how I untangle my own thinking. Because software architecture is invisible, I rely on metaphors—wild gardens, police sketch artists, cartographers who stopped traveling—to give complex ideas a tangible shape. When I’m not sketching systems or writing on <a href="https://blog.zepedro.com" target="_blank" rel="noopener">blog.zepedro.com</a>, you’ll find me tinkering, drinking far too much espresso, and enjoying life on a rainy Dublin afternoon.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
+    <!-- Writing Section -->
     <section class="section" id="writing">
-      <div class="section-head">
-        <span class="label">Essays &amp; Publication</span>
-        <h2>Notes from the climb: essays on systems, teams, and the human side of building.</h2>
-      </div>
+      <div class="section-grid">
+        <span class="label">Essays</span>
+        <div>
+          <h2 class="section-title">Notes from the climb: essays on systems, teams, and the human side of building.</h2>
 
-      <!-- CURATED_THEMES_PLACEHOLDER - Do not remove this comment -->
+          <!-- CURATED_THEMES_PLACEHOLDER - Do not remove this comment -->
       <div class="themes-grid">
         <div class="theme-col">
           <div class="theme-header">
@@ -818,11 +587,11 @@
       </div>
       <!-- /CURATED_THEMES_PLACEHOLDER -->
 
-      <div class="recent-heading">
-        <span class="label">Recent dispatches</span>
-      </div>
+          <div class="recent-heading">
+            <span class="label">Recent Dispatches</span>
+          </div>
 
-      <!-- BLOG_SPOTLIGHT_PLACEHOLDER - Do not remove this comment -->
+          <!-- BLOG_SPOTLIGHT_PLACEHOLDER - Do not remove this comment -->
       <a class="spotlight" href="https://blog.zepedro.com/fa95efd37f49" target="_blank"><span class="post-date">2026-10-11</span><div class="spotlight-body"><span class="spotlight-title">The wrong map: why the best question is a guess you expect to be corrected</span><p class="spotlight-excerpt">Why showing an expert your draft understanding gets better answers than asking them to explain</p></div><span class="post-arrow">↗</span></a>
       <!-- BLOG_POSTS_PLACEHOLDER - Do not remove this comment -->
       <div class="blog-list">
@@ -841,58 +610,47 @@
       </div>
     </section>
 
+    <!-- Elsewhere Section -->
     <section class="section" id="elsewhere">
-      <div class="section-head">
+      <div class="section-grid">
         <span class="label">Elsewhere</span>
-        <h2>Connect, collaborate, and read across the web.</h2>
+        <div>
+          <h2 class="section-title">Connect, collaborate, and read across the web.</h2>
+          <ul class="links">
+            <li><a href="https://www.linkedin.com/in/zepedro" target="_blank" rel="noopener"><span class="link-idx">01</span><span class="link-name">LinkedIn</span> <span class="post-arrow">↗</span></a></li>
+            <li><a href="https://blog.zepedro.com" target="_blank" rel="noopener"><span class="link-idx">02</span><span class="link-name">Publication &amp; Essays</span> <span class="post-arrow">↗</span></a></li>
+            <li><a href="https://github.com/zepedrosilva" target="_blank" rel="noopener"><span class="link-idx">03</span><span class="link-name">GitHub</span> <span class="post-arrow">↗</span></a></li>
+          </ul>
+        </div>
       </div>
-      <ul class="links">
-        <li><a href="https://www.linkedin.com/in/zepedro" target="_blank" rel="noopener"><span
-              class="link-idx">01</span><span class="link-name">LinkedIn</span><span class="link-arrow">↗</span></a>
-        </li>
-        <li><a href="https://blog.zepedro.com" target="_blank" rel="noopener"><span class="link-idx">02</span><span
-              class="link-name">Publication &amp; Essays</span><span class="link-arrow">↗</span></a></li>
-        <li><a href="https://github.com/zepedrosilva" target="_blank" rel="noopener"><span
-              class="link-idx">03</span><span class="link-name">GitHub</span><span class="link-arrow">↗</span></a></li>
-      </ul>
     </section>
 
+    <!-- Footer -->
     <footer class="footer">
-      <div class="colophon">
+      <div class="section-grid">
         <span class="label">Colophon</span>
-        <div class="colophon-cells">
-          <div class="colophon-cell">
-            <span class="col-label">Latitude</span>
-            <span class="col-value">53.3472° N</span>
+        <div>
+          <div class="colophon-grid">
+            <div class="col-cell"><span class="col-label">Latitude</span><span class="col-val">53.3472° N</span></div>
+            <div class="col-cell"><span class="col-label">Longitude</span><span class="col-val">6.2591° W</span></div>
+            <div class="col-cell"><span class="col-label">Timezone</span><span class="col-val">Europe / Dublin</span></div>
+            <div class="col-cell"><span class="col-label">Local Time</span><span class="col-val" id="local-clock">--:--:--</span></div>
           </div>
-          <div class="colophon-cell">
-            <span class="col-label">Longitude</span>
-            <span class="col-value">6.2591° W</span>
-          </div>
-          <div class="colophon-cell">
-            <span class="col-label">Timezone</span>
-            <span class="col-value">Europe / Dublin</span>
-          </div>
-          <div class="colophon-cell">
-            <span class="col-label">Local time</span>
-            <span class="col-value" id="local-clock">--:--:--</span>
+          <div class="footer-bar">
+            <a href="#top" class="logo" aria-label="José Silva">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 196 129">
+                <title>José Silva (aka Zé Pedro)</title>
+                <path d="m178.19779,7.34586c11.74545,8.47277 17.22578,19.59523 16.96791,33.68493c-0.17626,9.63098 0.02482,19.26824 -0.04573,28.90194c-0.1556,21.2457 -16.96249,37.90384 -38.25067,37.95775c-9.96648,0.02526 -19.9331,0.00431 -30.14097,0.00431c0,-11.08596 0,-21.76598 0,-33.10015c8.6505,0 17.25562,0.02821 25.86046,-0.00836c7.76451,-0.03298 9.20987,-1.49272 9.23266,-9.22422c0.02171,-7.36726 0.01625,-14.73468 0.00157,-22.10199c-0.01603,-8.04105 -1.20263,-9.26498 -9.0309,-9.28592c-7.36727,-0.01971 -14.73468,-0.01404 -22.102,-0.0016c-7.97681,0.01345 -9.25943,1.21535 -9.26985,9.13786c-0.03453,26.2579 -0.01313,52.51589 -0.01317,78.77384c0,1.86166 0.00002,3.72331 0.00002,5.90378c-11.20032,0 -22.01803,0 -33.30587,0c0,-3.36497 0,-6.53223 0,-9.6995c0,-26.25795 -0.02503,-52.51593 0.00779,-78.77383c0.02707,-21.65775 16.73724,-38.39935 38.31187,-38.44163c9.82308,-0.01926 19.65066,0.17868 29.46795,-0.06022c8.01418,-0.19501 15.27066,1.8251 22.30894,6.33301l-0.00001,0z" />
+                <path d="m40.46205,107.83222c-6.61008,0 -12.65315,0.013 -18.69614,-0.00309c-8.78196,-0.02334 -11.55495,-3.59903 -9.07658,-12.1633c3.66209,-12.6547 7.53865,-25.24729 11.32042,-37.86737c2.31094,-7.71181 4.61543,-15.42555 7.09032,-23.69836c-10.41015,0 -20.13983,0 -30.10007,0c0,-11.08964 0,-21.76683 0,-33.08348c3.9333,0 7.82307,-0.00001 11.71284,0c16.24065,0.00007 32.4815,-0.04859 48.72185,0.02027c8.43457,0.03575 11.02863,3.29134 8.66284,11.43788c-5.66792,19.51747 -11.59359,38.96007 -17.41024,58.43438c-0.31371,1.05025 -0.58167,2.11418 -1.01897,3.71313c10.51451,0 20.60529,0 31.01543,0c0,11.13585 0,21.81463 0,33.20993c-13.88708,0 -27.77087,0 -42.22171,0l0.00001,0.00001z" />
+              </svg>
+            </a>
+            <span>© 2026 José Silva</span>
+            <span>·</span>
+            <span>Hand-built in Dublin on a rainy Sunday</span>
           </div>
         </div>
       </div>
-      <div class="footer-row">
-        <a href="#top" class="logo" aria-label="José Silva">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 196 129">
-            <title>José Silva (aka Zé Pedro)</title>
-            <path
-              d="m178.19779,7.34586c11.74545,8.47277 17.22578,19.59523 16.96791,33.68493c-0.17626,9.63098 0.02482,19.26824 -0.04573,28.90194c-0.1556,21.2457 -16.96249,37.90384 -38.25067,37.95775c-9.96648,0.02526 -19.9331,0.00431 -30.14097,0.00431c0,-11.08596 0,-21.76598 0,-33.10015c8.6505,0 17.25562,0.02821 25.86046,-0.00836c7.76451,-0.03298 9.20987,-1.49272 9.23266,-9.22422c0.02171,-7.36726 0.01625,-14.73468 0.00157,-22.10199c-0.01603,-8.04105 -1.20263,-9.26498 -9.0309,-9.28592c-7.36727,-0.01971 -14.73468,-0.01404 -22.102,-0.0016c-7.97681,0.01345 -9.25943,1.21535 -9.26985,9.13786c-0.03453,26.2579 -0.01313,52.51589 -0.01317,78.77384c0,1.86166 0.00002,3.72331 0.00002,5.90378c-11.20032,0 -22.01803,0 -33.30587,0c0,-3.36497 0,-6.53223 0,-9.6995c0,-26.25795 -0.02503,-52.51593 0.00779,-78.77383c0.02707,-21.65775 16.73724,-38.39935 38.31187,-38.44163c9.82308,-0.01926 19.65066,0.17868 29.46795,-0.06022c8.01418,-0.19501 15.27066,1.8251 22.30894,6.33301l-0.00001,0z" />
-            <path
-              d="m40.46205,107.83222c-6.61008,0 -12.65315,0.013 -18.69614,-0.00309c-8.78196,-0.02334 -11.55495,-3.59903 -9.07658,-12.1633c3.66209,-12.6547 7.53865,-25.24729 11.32042,-37.86737c2.31094,-7.71181 4.61543,-15.42555 7.09032,-23.69836c-10.41015,0 -20.13983,0 -30.10007,0c0,-11.08964 0,-21.76683 0,-33.08348c3.9333,0 7.82307,-0.00001 11.71284,0c16.24065,0.00007 32.4815,-0.04859 48.72185,0.02027c8.43457,0.03575 11.02863,3.29134 8.66284,11.43788c-5.66792,19.51747 -11.59359,38.96007 -17.41024,58.43438c-0.31371,1.05025 -0.58167,2.11418 -1.01897,3.71313c10.51451,0 20.60529,0 31.01543,0c0,11.13585 0,21.81463 0,33.20993c-13.88708,0 -27.77087,0 -42.22171,0l0.00001,0.00001z" />
-          </svg>
-        </a>
-        <span class="footer-text">© 2026 José Silva · Hand-built in Dublin on a rainy Sunday</span>
-      </div>
     </footer>
-
   </main>
 
   <script>
@@ -914,49 +672,29 @@
     const rest = document.getElementById('tagline-rest');
     if (pill && rest) {
       let idx = Math.floor(Math.random() * words.length);
-
       function splitTagline(sentence) {
         var comma = sentence.indexOf(',');
-        return comma === -1
-          ? { pill: sentence, rest: '' }
-          : { pill: sentence.slice(0, comma), rest: sentence.slice(comma) };
+        return comma === -1 ? { pill: sentence, rest: '' } : { pill: sentence.slice(0, comma), rest: sentence.slice(comma) };
       }
-
       function deleteAll(done) {
         var timer = setInterval(function () {
-          if (rest.textContent.length > 0) {
-            rest.textContent = rest.textContent.slice(0, -1);
-          } else if (pill.textContent.length > 0) {
-            pill.textContent = pill.textContent.slice(0, -1);
-          } else {
-            clearInterval(timer);
-            done();
-          }
-        }, 15);
+          if (rest.textContent.length > 0) rest.textContent = rest.textContent.slice(0, -1);
+          else if (pill.textContent.length > 0) pill.textContent = pill.textContent.slice(0, -1);
+          else { clearInterval(timer); done(); }
+        }, 14);
       }
-
       function typeAll(pillText, restText, onDone) {
         var full = pillText + restText;
         var i = 0;
-        pill.textContent = '';
-        rest.textContent = '';
+        pill.textContent = ''; rest.textContent = '';
         var timer = setInterval(function () {
           i++;
-          if (i <= pillText.length) {
-            pill.textContent = full.slice(0, i);
-          } else {
-            pill.textContent = pillText;
-            rest.textContent = full.slice(pillText.length, i);
-          }
-          if (i >= full.length) {
-            clearInterval(timer);
-            if (onDone) onDone();
-          }
-        }, 34);
+          if (i <= pillText.length) pill.textContent = full.slice(0, i);
+          else { pill.textContent = pillText; rest.textContent = full.slice(pillText.length, i); }
+          if (i >= full.length) { clearInterval(timer); if (onDone) onDone(); }
+        }, 32);
       }
-
       var taglineEl = pill.closest('p') || pill.parentElement;
-
       function cycle() {
         taglineEl.style.minHeight = taglineEl.offsetHeight + 'px';
         deleteAll(function () {
@@ -964,34 +702,23 @@
           var parts = splitTagline(words[idx]);
           typeAll(parts.pill, parts.rest, function () {
             taglineEl.style.minHeight = '';
-            setTimeout(cycle, 20000);
+            setTimeout(cycle, 5000);
           });
         });
       }
-
       var initial = splitTagline(words[idx]);
       pill.textContent = initial.pill;
       rest.textContent = initial.rest;
-
-      setTimeout(cycle, 20000);
+      setTimeout(cycle, 2500);
     }
-
     (function () {
       var el = document.getElementById('local-clock');
       if (!el) return;
       function tick() {
-        el.textContent = new Date().toLocaleTimeString('en-IE', {
-          timeZone: 'Europe/Dublin',
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-          hour12: false
-        });
+        el.textContent = new Date().toLocaleTimeString('en-IE', { timeZone: 'Europe/Dublin', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
       }
-      tick();
-      setInterval(tick, 1000);
+      tick(); setInterval(tick, 1000);
     })();
   </script>
 </body>
-
 </html>
